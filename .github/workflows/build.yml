@@ -14,43 +14,67 @@ jobs:
           rustup component add rustfmt --toolchain stable-x86_64-unknown-linux-gnu
           rustup component add clippy
 
-      - name: async-std
-        run: |
+  async-std:
+    name: async-std
+    runs-on: ubuntu-18.04
+    needs: setup
+    steps:
+      - run: |
           cd /home/runner/work/greeter/greeter/greeter-async-std
           cargo clippy -- -D warnings
           cargo test --verbose --all
           cargo fmt -- --check
 
-      - name: glommio
-        run: |
+  glommio:
+    name: glommio
+    runs-on: ubuntu-18.04
+    needs: setup
+    steps:
+      -  run: |
           cd /home/runner/work/greeter/greeter/greeter-glommio
           cargo clippy -- -D warnings
           cargo test --verbose --all
           cargo fmt -- --check
 
-      - name: minimum
-        run: |
+  minimum:
+    name: minimum
+    runs-on: ubuntu-18.04
+    needs: setup
+    steps:
+      - run: |
           cd /home/runner/work/greeter/greeter/greeter-minimum
           cargo clippy -- -D warnings
           cargo test --verbose --all
           cargo fmt -- --check
 
-      - name: smol
-        run: |
+  smol:
+    name: smol
+    runs-on: ubuntu-18.04
+    needs: setup
+    steps:
+      - run: |
           cd /home/runner/work/greeter/greeter/greeter-smol
           cargo clippy -- -D warnings
           cargo test --verbose --all
           cargo fmt -- --check
 
-      - name: tokio
-        run: |
+  tokio:
+    name: tokio
+    runs-on: ubuntu-18.04
+    needs: setup
+    steps:
+      - run: |
           cd /home/runner/work/greeter/greeter/greeter-tokio
           cargo clippy -- -D warnings
           cargo test --verbose --all
           cargo fmt -- --check
 
-      - name: noasync
-        run: |
+  noasync:
+    name: noasync
+    runs-on: ubuntu-18.04
+    needs: setup
+    steps:
+      - run: |
           cd /home/runner/work/greeter/greeter/greeter-noasync
           cargo clippy -- -D warnings
           cargo test --verbose --all
